@@ -9,14 +9,16 @@
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* pokemonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* pokemonTests.m */; };
 		0C80B921A6F3F58F76C31292 /* libPods-pokemon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-pokemon.a */; };
+		0F6AA0D2CE9941C8A6BDA7FD /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		53619C98FCB843589753927E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */; };
 		7699B88040F8A987B510C191 /* libPods-pokemon-pokemonTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-pokemon-pokemonTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		0F6AA0D2CE9941C8A6BDA7FD /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */; };
-		53619C98FCB843589753927E /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */; };
 		B6018D33321E4695B6D60FC4 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7AD295F8BECC437EA9FDBB05 /* Poppins-SemiBold.ttf */; };
+		FD86BA2828B7ACB500EF24D7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD86BA2728B7ACB500EF24D7 /* Assets.xcassets */; };
+		FD86BA2A28B7ACFA00EF24D7 /* pokemon_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = FD86BA2928B7ACFA00EF24D7 /* pokemon_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +35,7 @@
 		00E356EE1AD99517003FC87E /* pokemonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = pokemonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* pokemonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = pokemonTests.m; sourceTree = "<group>"; };
+		05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* pokemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pokemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = pokemon/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = pokemon/AppDelegate.mm; sourceTree = "<group>"; };
@@ -41,15 +44,16 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = pokemon/main.m; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-pokemon-pokemonTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pokemon-pokemonTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-pokemon.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokemon.debug.xcconfig"; path = "Target Support Files/Pods-pokemon/Pods-pokemon.debug.xcconfig"; sourceTree = "<group>"; };
+		4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-pokemon.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokemon.release.xcconfig"; path = "Target Support Files/Pods-pokemon/Pods-pokemon.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-pokemon-pokemonTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokemon-pokemonTests.debug.xcconfig"; path = "Target Support Files/Pods-pokemon-pokemonTests/Pods-pokemon-pokemonTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-pokemon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-pokemon.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7AD295F8BECC437EA9FDBB05 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = pokemon/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-pokemon-pokemonTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-pokemon-pokemonTests.release.xcconfig"; path = "Target Support Files/Pods-pokemon-pokemonTests/Pods-pokemon-pokemonTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */ = {isa = PBXFileReference; name = "Poppins-Light.ttf"; path = "../assets/fonts/Poppins-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; name = "Poppins-Medium.ttf"; path = "../assets/fonts/Poppins-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		7AD295F8BECC437EA9FDBB05 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; name = "Poppins-SemiBold.ttf"; path = "../assets/fonts/Poppins-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		FD86BA2728B7ACB500EF24D7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = ../../../../AppIcons/Assets.xcassets; sourceTree = "<group>"; };
+		FD86BA2928B7ACFA00EF24D7 /* pokemon_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pokemon_logo.png; path = ../../../../pokemon_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +96,8 @@
 		13B07FAE1A68108700A75B9A /* pokemon */ = {
 			isa = PBXGroup;
 			children = (
+				FD86BA2928B7ACFA00EF24D7 /* pokemon_logo.png */,
+				FD86BA2728B7ACB500EF24D7 /* Assets.xcassets */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -110,6 +116,16 @@
 				19F6CBCC0A4E27FBF8BF4A61 /* libPods-pokemon-pokemonTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EE7665255C44359BD805463 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */,
+				05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */,
+				7AD295F8BECC437EA9FDBB05 /* Poppins-SemiBold.ttf */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -154,17 +170,6 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
-		};
-		3EE7665255C44359BD805463 /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				4635CCBF13484A8495DDFAEE /* Poppins-Light.ttf */,
-				05A5B86E6D0B4D6692B1DEC9 /* Poppins-Medium.ttf */,
-				7AD295F8BECC437EA9FDBB05 /* Poppins-SemiBold.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -264,6 +269,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				0F6AA0D2CE9941C8A6BDA7FD /* Poppins-Light.ttf in Resources */,
 				53619C98FCB843589753927E /* Poppins-Medium.ttf in Resources */,
+				FD86BA2828B7ACB500EF24D7 /* Assets.xcassets in Resources */,
+				FD86BA2A28B7ACFA00EF24D7 /* pokemon_logo.png in Resources */,
 				B6018D33321E4695B6D60FC4 /* Poppins-SemiBold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
