@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import * as eva from '@eva-design/eva';
-import {SafeAreaView, StyleSheet, View} from 'react-native';
+import {SafeAreaView, StyleSheet, View, Linking} from 'react-native';
 import {
   ApplicationProvider,
   Layout,
@@ -23,7 +23,9 @@ const App: React.FC = () => {
           <SafeAreaView>
             <View>
               <Text category="h1">bulbasaur</Text>
-              <Button size={'small'}>Click me</Button>
+              <Button size={'small'}>
+                Click me
+              </Button>
             </View>
           </SafeAreaView>
         </Layout>
