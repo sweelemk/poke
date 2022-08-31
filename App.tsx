@@ -1,44 +1,30 @@
-import React, {useEffect} from 'react';
+import React, {useState} from 'react';
 import * as eva from '@eva-design/eva';
-import {SafeAreaView, StyleSheet, View, Linking} from 'react-native';
-import {
-  ApplicationProvider,
-  Layout,
-  Text,
-  Button,
-  IconRegistry,
-} from '@ui-kitten/components';
+import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 import {default as mapping} from './mapping.json';
+import {NavigationContainer} from '@react-navigation/native';
+import AuthanticationNavigator from './src/screens/auth';
+import {StatusBar} from 'react-native';
 
 const App: React.FC = () => {
+  const [theme] = useState('light');
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
+      <StatusBar
+        barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
+      />
       <ApplicationProvider
         {...eva}
-        theme={eva.light}
+        theme={theme === 'light' ? eva.light : eva.dark}
         customMapping={{...eva.mapping, ...mapping}}>
-        <Layout style={styles.layout}>
-          <SafeAreaView>
-            <View>
-              <Text category="h1">bulbasaur</Text>
-              <Button size={'small'}>
-                Click me
-              </Button>
-            </View>
-          </SafeAreaView>
-        </Layout>
+        <NavigationContainer>
+          <AuthanticationNavigator />
+        </NavigationContainer>
       </ApplicationProvider>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  layout: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-});
 
 export default App;
