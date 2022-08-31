@@ -1,11 +1,7 @@
 import React from 'react';
 import {Icon, TopNavigationAction, TopNavigation} from '@ui-kitten/components';
 
-type TopNavigatorProps = {
-  navigation: any
-};
-
-const TopNavigator: React.FC<TopNavigatorProps> = ({navigation}) => {
+const TopNavigator: React.FC<any> = ({navigation}) => {
   const BackIcon = (props: any) => <Icon {...props} name="arrow-back" />;
 
   const BackAction = () => (
