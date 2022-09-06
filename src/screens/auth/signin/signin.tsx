@@ -1,13 +1,50 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Button, Input, Text} from '@ui-kitten/components';
+import {Formik} from 'formik';
+import * as Yup from 'yup';
 import {Layout, TopNavigator} from '../../../components';
 import {styleConfig} from '../../../utils';
 import type {AuthenticationRoutes, StackNavigationProps} from '../types';
+import {useAuth} from '../../../context';
+import {signIn} from '../../../modules/api/auth-service';
 
-const SignIn: React.FC<
+const SignIpSchema = Yup.object().shape({
+  email: Yup.string().email('Invalid email').required('Required'),
+});
+
+type formState = {
+  email: string;
+  password: string;
+};
+
+const formInitialValues: formState = {
+  email: '',
+  password: '',
+};
+
+const SignInScreen: React.FC<
   StackNavigationProps<AuthenticationRoutes, 'SignIn'>
 > = ({navigation}) => {
+  const [isLoaing, setLoading] = useState(false);
+  const {setUser} = useAuth();
+
+  const onHandleSubmit = async (e: formState) => {
+    const user = {
+      password: e.password,
+      email: e.email,
+    };
+
+    try {
+      setLoading(true);
+      const data = await signIn(user);
+      setUser({id: data.user?.id, ...data.user?.user_metadata});
+    } catch (error) {
+      console.warn(error);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <Layout>
       <TopNavigator navigation={navigation} />
@@ -15,17 +52,45 @@ const SignIn: React.FC<
         <View style={styles.title}>
           <Text category="h4">Welcome</Text>
           <Text category="h4">back,</Text>
-          <Text category="p1">Let's get started</Text>
+          <Text category="p1" style={{marginTop: styleConfig.spacing.s}}>
+            Let's get started
+          </Text>
         </View>
-        <View style={styles.box}>
-          <Input placeholder="Email" returnKeyType="next" />
-        </View>
-        <View style={styles.box}>
-          <Input placeholder="Password" />
-        </View>
-        <View style={styles.box}>
-          <Button>Sign in</Button>
-        </View>
+        <Formik
+          initialValues={formInitialValues}
+          validationSchema={SignIpSchema}
+          onSubmit={onHandleSubmit}>
+          {({handleSubmit, errors, handleChange}) => {
+            return (
+              <>
+                <View style={styles.box}>
+                  <Input
+                    placeholder="Email"
+                    onChangeText={handleChange('email')}
+                    returnKeyType="next"
+                    autoComplete="email"
+                    autoCapitalize="none"
+                    status={errors.email ? 'danger' : 'basic'}
+                  />
+                </View>
+                <View style={styles.box}>
+                  <Input
+                    placeholder="Password"
+                    secureTextEntry
+                    autoComplete="password"
+                    autoCapitalize="none"
+                    onChangeText={handleChange('password')}
+                  />
+                </View>
+                <View style={styles.box}>
+                  <Button disabled={isLoaing} onPress={() => handleSubmit()}>
+                    Sign in
+                  </Button>
+                </View>
+              </>
+            );
+          }}
+        </Formik>
         <View
           style={{
             ...styles.box,
@@ -55,4 +120,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+export default SignInScreen;

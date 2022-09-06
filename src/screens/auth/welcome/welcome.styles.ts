@@ -1,5 +1,5 @@
 import {StyleSheet} from 'react-native';
-import {styleConfig} from './../../../utils/style-config';
+import {styleConfig} from '../../../utils/style-config';
 
 export const styles = StyleSheet.create({
   container: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import {Button, Input, Text} from '@ui-kitten/components';
@@ -7,9 +7,10 @@ import * as Yup from 'yup';
 import type {AuthenticationRoutes, StackNavigationProps} from '../types';
 import {Layout, TopNavigator} from '../../../components';
 import {styleConfig} from '../../../utils';
+import {signUp} from '../../../modules/api/auth-service';
+import {useAuth} from '../../../context';
 
 const SignUpSchema = Yup.object().shape({
-  fullName: Yup.string().min(2, 'Too Short!').required('Required'),
   username: Yup.string().min(2, 'Too Short!').required('Required'),
   email: Yup.string().email('Invalid email').required('Required'),
   password: Yup.string()
@@ -22,17 +23,47 @@ const SignUpSchema = Yup.object().shape({
   ]),
 });
 
-const formInitialValues = {
-  fullName: '',
+type formState = {
+  username: string;
+  nickname?: string;
+  email: string;
+  password: string;
+  passwordConfirmation: string;
+};
+
+const formInitialValues: formState = {
   username: '',
+  nickname: '',
   email: '',
   password: '',
   passwordConfirmation: '',
 };
 
-const SignIn: React.FC<
+const SignUnScreen: React.FC<
   StackNavigationProps<AuthenticationRoutes, 'SignUp'>
 > = ({navigation}) => {
+  const [isLoaing, setLoading] = useState(false);
+  const {setUser} = useAuth();
+
+  const onHandleSubmit = async (e: formState) => {
+    const user = {
+      username: e.username,
+      nickname: e.nickname,
+      password: e.password,
+      email: e.email,
+    };
+
+    try {
+      setLoading(true);
+      const data = await signUp(user);
+      setUser({id: data.user?.id, ...data.user?.user_metadata});
+    } catch (error) {
+      console.warn(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Layout>
       <TopNavigator navigation={navigation} />
@@ -41,35 +72,38 @@ const SignIn: React.FC<
           <View style={styles.title}>
             <Text category="h4">Create an</Text>
             <Text category="h4">Account,</Text>
-            <Text category="p1">Please, sign up to continue</Text>
+            <Text category="p1" style={{marginTop: styleConfig.spacing.s}}>
+              Please, sign up to continue
+            </Text>
           </View>
           <Formik
             initialValues={formInitialValues}
             validationSchema={SignUpSchema}
-            onSubmit={e => console.log(e)}>
+            onSubmit={onHandleSubmit}>
             {({handleSubmit, errors, handleChange}) => {
-              console.log(errors);
               return (
                 <>
                   <View style={styles.box}>
                     <Input
-                      placeholder="Full name"
-                      returnKeyType="next"
-                      onChangeText={handleChange('fullName')}
-                      status={errors.fullName ? 'danger' : 'basic'}
-                    />
-                  </View>
-                  <View style={styles.box}>
-                    <Input
-                      placeholder="Username"
+                      placeholder="Username*"
                       autoCapitalize="none"
+                      autoComplete="off"
                       onChangeText={handleChange('username')}
                       status={errors.username ? 'danger' : 'basic'}
                     />
                   </View>
                   <View style={styles.box}>
                     <Input
-                      placeholder="Email"
+                      placeholder="Nickname"
+                      returnKeyType="next"
+                      autoCapitalize="none"
+                      autoComplete="off"
+                      onChangeText={handleChange('nickname')}
+                    />
+                  </View>
+                  <View style={styles.box}>
+                    <Input
+                      placeholder="Email*"
                       returnKeyType="next"
                       autoComplete="email"
                       autoCapitalize="none"
@@ -79,7 +113,7 @@ const SignIn: React.FC<
                   </View>
                   <View style={styles.box}>
                     <Input
-                      placeholder="Password"
+                      placeholder="Password*"
                       secureTextEntry
                       autoComplete="password"
                       autoCapitalize="none"
@@ -97,7 +131,9 @@ const SignIn: React.FC<
                     />
                   </View>
                   <View style={styles.box}>
-                    <Button onPress={() => handleSubmit()}>Sign up</Button>
+                    <Button disabled={isLoaing} onPress={() => handleSubmit()}>
+                      Sign up
+                    </Button>
                   </View>
                 </>
               );
@@ -126,4 +162,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SignIn;
+export default SignUnScreen;
