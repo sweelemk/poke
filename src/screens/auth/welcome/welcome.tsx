@@ -6,7 +6,7 @@ import type {StackNavigationProps, AuthenticationRoutes} from '../types';
 const posterPath = require('../../../../assets/images/poke.png');
 import {styles} from './welcome.styles';
 
-const Welcome: React.FC<
+const WelcomeScreen: React.FC<
   StackNavigationProps<AuthenticationRoutes, 'Welcome'>
 > = ({navigation}) => {
   return (
@@ -18,7 +18,7 @@ const Welcome: React.FC<
         </View>
         <View>
           <Button
-            appearance="ghost"
+            appearance="outline"
             onPress={() => navigation.navigate('SignUp')}>
             Sign up
           </Button>
@@ -28,4 +28,4 @@ const Welcome: React.FC<
   );
 };
 
-export default Welcome;
+export default WelcomeScreen;
