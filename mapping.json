@@ -1,5 +1,58 @@
 {
   "strict": {
-    "text-font-family": "Poppins-Light"
+    "text-font-family": "Poppins-Light",
+
+    "text-heading-1-font-size": 36,
+    "text-heading-1-font-weight": "600",
+    "text-heading-1-font-family": "Poppins-SemiBold",
+
+    "text-heading-2-font-size": 32,
+    "text-heading-2-font-weight": "600",
+    "text-heading-2-font-family": "Poppins-SemiBold",
+
+    "text-heading-3-font-size": 30,
+    "text-heading-3-font-weight": "600",
+    "text-heading-3-font-family": "Poppins-SemiBold",
+
+    "text-heading-4-font-size": 26,
+    "text-heading-4-font-weight": "600",
+    "text-heading-4-font-family": "Poppins-SemiBold",
+
+    "text-heading-5-font-size": 22,
+    "text-heading-5-font-weight": "600",
+    "text-heading-5-font-family": "Poppins-SemiBold",
+
+    "text-heading-6-font-size": 18,
+    "text-heading-6-font-weight": "600",
+    "text-heading-6-font-family": "Poppins-SemiBold",
+
+    "text-subtitle-1-font-size": 15,
+    "text-subtitle-1-font-weight": "500",
+    "text-subtitle-1-font-family": "Poppins-Medium",
+    
+    "text-subtitle-2-font-size": 13,
+    "text-subtitle-2-font-weight": "500",
+    "text-subtitle-2-font-family": "Poppins-Medium",
+
+
+    "text-paragraph-1-font-size": 15,
+    "text-paragraph-1-font-weight": "300",
+    "text-paragraph-1-font-family": "Poppins-Light",
+
+    "text-paragraph-2-font-size": 13,
+    "text-paragraph-2-font-weight": "300",
+    "text-paragraph-2-font-family": "Poppins-Light",
+
+    "text-caption-1-font-size": 12,
+    "text-caption-1-font-weight": "300",
+    "text-caption-1-font-family": "Poppins-Light",
+
+    "text-caption-2-font-size": 12,
+    "text-caption-2-font-weight": "500",
+    "text-caption-2-font-family": "Poppins-Medium",
+
+    "text-label-font-size": 12,
+    "text-label-font-weight": "500",
+    "text-label-font-family": "Poppins-Medium"
   }
 }

@@ -1,20 +1,21 @@
-import {mapping} from '@eva-design/eva';
+import React, {useState} from 'react';
+import {StatusBar} from 'react-native';
 import * as eva from '@eva-design/eva';
 import {NavigationContainer} from '@react-navigation/native';
 import {IconRegistry, ApplicationProvider} from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
-import React, {useState} from 'react';
-import {StatusBar} from 'react-native';
 import AppNavigator from '../../screens/app';
 import AuthanticationNavigator from '../../screens/auth';
 import {useAuth} from '../../context';
+import mapping from '../../../mapping.json';
+import {MaterialCommunityIconsPack} from '../icons/material-community-icons';
 
 const RootContainer: React.FC = () => {
   const {user} = useAuth();
   const [theme] = useState('light');
   return (
     <>
-      <IconRegistry icons={EvaIconsPack} />
+      <IconRegistry icons={[EvaIconsPack, MaterialCommunityIconsPack]} />
       <StatusBar
         barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
       />
