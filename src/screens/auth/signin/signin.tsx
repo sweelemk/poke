@@ -109,7 +109,7 @@ const SignInScreen: React.FC<
 const styles = StyleSheet.create({
   container: {
     paddingTop: styleConfig.spacing.s,
-    paddingHorizontal: 16,
+    paddingHorizontal: styleConfig.spacing.l,
   },
   title: {
     marginBottom: styleConfig.spacing.xl,

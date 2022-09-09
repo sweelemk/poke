@@ -5,7 +5,7 @@ import {Avatar, Layout} from '../../../components';
 import {styles} from './profile.styles';
 import {useAuth} from '../../../context';
 
-const ProfileScreen = () => {
+const ProfileScreen: React.FC = () => {
   const {user, signout} = useAuth();
   return (
     <Layout>
