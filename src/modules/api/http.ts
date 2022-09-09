@@ -1,14 +1,7 @@
 import axios, {AxiosRequestConfig, AxiosInstance, AxiosResponse} from 'axios';
-import {SUPABASE_PUBLIC_KEY, SUPABASE_URL} from '@env';
 import Storage from '../common/storage';
 
-const headers: Readonly<Record<string, string | boolean>> = {
-  Accept: 'application/json',
-  'Content-Type': 'application/json; charset=utf-8',
-  'Access-Control-Allow-Credentials': true,
-  'X-Requested-With': 'XMLHttpRequest',
-  apikey: SUPABASE_PUBLIC_KEY,
-};
+const BASE_URL = 'https://pokeapi.co/';
 
 class Http {
   private instance: AxiosInstance | null = null;
@@ -19,8 +12,7 @@ class Http {
 
   initHttp(): AxiosInstance {
     const http = axios.create({
-      baseURL: `${SUPABASE_URL}/rest/v1`,
-      headers,
+      baseURL: `${BASE_URL}api/v2/`,
     });
 
     http.interceptors.request.use(

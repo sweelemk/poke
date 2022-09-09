@@ -148,7 +148,7 @@ const SignUnScreen: React.FC<
 const styles = StyleSheet.create({
   container: {
     paddingTop: styleConfig.spacing.s,
-    paddingHorizontal: 16,
+    paddingHorizontal: styleConfig.spacing.l,
   },
   naviContainer: {
     // marginBottom: styleConfig.spacing.s,

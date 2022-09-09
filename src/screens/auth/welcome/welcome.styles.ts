@@ -4,7 +4,7 @@ import {styleConfig} from '../../../utils/style-config';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 16,
+    paddingHorizontal: styleConfig.spacing.l,
     justifyContent: 'flex-end',
     paddingBottom: styleConfig.spacing.xxl,
     overflow: 'hidden',
