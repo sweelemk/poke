@@ -6,30 +6,33 @@ import type {PokemonListType} from '../../../interfaces';
 import {FlatList, View} from 'react-native';
 import {Spinner} from '../../../components';
 import {styles} from './home.styles';
-import {getPageOffset} from '../../../helpers';
 
 type PokemonsType = {
-  next: string;
+  isEndOfList: boolean;
   data: PokemonListType[];
 };
 
 const initialPokemonState = {
-  next: '',
+  isEndOfList: false,
   data: [],
 };
+
+const limitPerPage = 8;
 
 const HomeScreen: React.FC = () => {
   const [pokemons, setPokemons] = useState<PokemonsType>(initialPokemonState);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(0);
 
-  const fetchPokemons = async (offset = 0) => {
-    setLoading(true);
+  const fetchPokemons = async () => {
+    const offset = limitPerPage * page;
+
     try {
-      const {pokePromise, next} = await getPokemons(offset);
+      const {pokePromise, next} = await getPokemons(offset, limitPerPage);
       const data = await pokePromise;
 
       const pokeData = {
-        next: next,
+        isEndOfList: !next,
         data: [...pokemons.data, ...data],
       } as PokemonsType;
 
@@ -44,23 +47,13 @@ const HomeScreen: React.FC = () => {
   useEffect(() => {
     fetchPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const renderLoader = () => {
-    return isLoading ? (
-      <View style={styles.loader}>
-        <Spinner />
-      </View>
-    ) : null;
-  };
+  }, [page]);
 
   const fetchMorePokemons = () => {
-    if (!pokemons?.next) {
+    if (pokemons.isEndOfList) {
       return;
     }
-
-    const offset = getPageOffset(pokemons.next);
-    fetchPokemons(offset);
+    setPage(page + 1);
   };
 
   return (
@@ -76,12 +69,11 @@ const HomeScreen: React.FC = () => {
         <FlatList
           data={pokemons?.data}
           renderItem={poke => {
-            return <Card key={poke.item.id} pokemon={poke.item} />;
+            return <Card key={poke.item.name} pokemon={poke.item} />;
           }}
-          keyExtractor={item => item.name}
+          keyExtractor={item => String(item.name)}
           contentContainerStyle={styles.container}
-          ListFooterComponent={renderLoader}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={1}
           onEndReached={fetchMorePokemons}
         />
       ) : (

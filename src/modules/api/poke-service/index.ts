@@ -2,9 +2,9 @@ import {getPokemonImage} from '../../../helpers';
 import type {NameURLInterface, PokemonTypes} from '../../../interfaces';
 import {http} from '../http';
 
-export const getPokemons = async (offset: number) => {
+export const getPokemons = async (offset: number, limit: number) => {
   const {data: pokemonlist} = await http.get(
-    `pokemon/?limit=8&offset=${offset}`,
+    `pokemon/?limit=${limit}&offset=${offset}`,
   );
 
   const pokeList = Promise.all(

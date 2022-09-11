@@ -19,10 +19,6 @@ const HomeIcon = (props: any) => (
   <Icon {...props} name="pokeball" pack="material-community" />
 );
 
-// const GameIcon = (props: any) => (
-//   <Icon {...props} name="play-circle-outline" pack="material-community" />
-// );
-
 const ProfileIcon = (props: any) => <Icon {...props} name="person-outline" />;
 
 const BottomTabBar = (props: BottomTabBarProps) => (
@@ -35,7 +31,6 @@ const BottomTabBar = (props: BottomTabBarProps) => (
     appearance="noIndicator"
     style={styles.bottomNavigation}>
     <BottomNavigationTab icon={HomeIcon} />
-    {/* <BottomNavigationTab icon={GameIcon} /> */}
     <BottomNavigationTab icon={ProfileIcon} />
   </BottomNavigation>
 );
@@ -59,8 +54,6 @@ const styles = StyleSheet.create({
     height: 28,
   },
   bottomNavigation: {
-    borderTopColor: '#8F9BB3',
-    borderTopWidth: 1,
     paddingTop: 12,
     paddingBottom: 32,
   },
