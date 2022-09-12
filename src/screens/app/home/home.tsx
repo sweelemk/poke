@@ -1,88 +1,104 @@
 import React, {useEffect, useState} from 'react';
-import {Icon, TopNavigation, TopNavigationAction} from '@ui-kitten/components';
+import type {CompositeNavigationProp} from '@react-navigation/native';
+import type {StackNavigationProp} from '@react-navigation/stack';
+import {
+  Icon,
+  TopNavigation,
+  TopNavigationAction,
+  Text,
+} from '@ui-kitten/components';
 import {Card, Layout} from '../../../components';
 import {getPokemons} from '../../../modules/api/poke-service';
 import type {PokemonListType} from '../../../interfaces';
 import {FlatList, View} from 'react-native';
 import {Spinner} from '../../../components';
+import type {AppRoutes, TabRoutes} from '../types';
 import {styles} from './home.styles';
-import {getPageOffset} from '../../../helpers';
+
+interface HomeProps {
+  navigation: CompositeNavigationProp<
+    StackNavigationProp<TabRoutes, 'Home'>,
+    StackNavigationProp<AppRoutes, 'Search'>
+  >;
+}
 
 type PokemonsType = {
-  next: string;
+  isEndOfList: boolean;
   data: PokemonListType[];
 };
 
 const initialPokemonState = {
-  next: '',
+  isEndOfList: false,
   data: [],
 };
 
-const HomeScreen: React.FC = () => {
-  const [pokemons, setPokemons] = useState<PokemonsType>(initialPokemonState);
-  const [isLoading, setLoading] = useState<boolean>(false);
+const limitPerPage = 8;
 
-  const fetchPokemons = async (offset = 0) => {
-    setLoading(true);
+const HomeScreen: React.FC<HomeProps> = ({navigation}) => {
+  const [pokemons, setPokemons] = useState<PokemonsType>(initialPokemonState);
+  const [page, setPage] = useState<number>(0);
+
+  const fetchPokemons = async () => {
+    const offset = limitPerPage * page;
+
     try {
-      const {pokePromise, next} = await getPokemons(offset);
+      const {pokePromise, next} = await getPokemons(offset, limitPerPage);
       const data = await pokePromise;
 
       const pokeData = {
-        next: next,
+        isEndOfList: !next,
         data: [...pokemons.data, ...data],
       } as PokemonsType;
 
       setPokemons(pokeData);
     } catch (e) {
       console.warn(e);
-    } finally {
-      setLoading(false);
     }
   };
 
   useEffect(() => {
     fetchPokemons();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const renderLoader = () => {
-    return isLoading ? (
-      <View style={styles.loader}>
-        <Spinner />
-      </View>
-    ) : null;
-  };
+  }, [page]);
 
   const fetchMorePokemons = () => {
-    if (!pokemons?.next) {
+    if (pokemons.isEndOfList) {
       return;
     }
+    setPage(page + 1);
+  };
 
-    const offset = getPageOffset(pokemons.next);
-    fetchPokemons(offset);
+  const emptyResult = () => {
+    return (
+      <View style={styles.empty}>
+        <Text>There are no Pokémon on the list.</Text>
+      </View>
+    );
   };
 
   return (
     <Layout>
       <TopNavigation
-        title="Pokemons"
+        title="Pokémon"
         alignment="center"
         accessoryRight={() => (
-          <TopNavigationAction icon={<Icon name="search-outline" />} />
+          <TopNavigationAction
+            icon={<Icon name="search-outline" />}
+            onPress={() => navigation.navigate('Search')}
+          />
         )}
       />
       {pokemons ? (
         <FlatList
           data={pokemons?.data}
           renderItem={poke => {
-            return <Card key={poke.item.id} pokemon={poke.item} />;
+            return <Card key={poke.item.name} pokemon={poke.item} />;
           }}
-          keyExtractor={item => item.name}
+          keyExtractor={item => String(item.name)}
           contentContainerStyle={styles.container}
-          ListFooterComponent={renderLoader}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={1}
           onEndReached={fetchMorePokemons}
+          ListEmptyComponent={emptyResult}
         />
       ) : (
         <Spinner />

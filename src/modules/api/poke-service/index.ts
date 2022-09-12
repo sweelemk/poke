@@ -2,9 +2,9 @@ import {getPokemonImage} from '../../../helpers';
 import type {NameURLInterface, PokemonTypes} from '../../../interfaces';
 import {http} from '../http';
 
-export const getPokemons = async (offset: number) => {
+export const getPokemons = async (offset: number, limit: number) => {
   const {data: pokemonlist} = await http.get(
-    `pokemon/?limit=8&offset=${offset}`,
+    `pokemon/?limit=${limit}&offset=${offset}`,
   );
 
   const pokeList = Promise.all(
@@ -20,4 +20,26 @@ export const getPokemons = async (offset: number) => {
     }),
   );
   return {next: pokemonlist.next, pokePromise: pokeList};
+};
+
+export const getAllPokemons = async () => {
+  const {data} = await http.get('/pokemon/?limit=807&offset=0');
+  return data.results;
+};
+
+export const searchPokemons = async (pokemons: NameURLInterface[]) => {
+  const pokeList = Promise.all(
+    pokemons.map(async (pokemon: NameURLInterface) => {
+      const {data} = await http.get(pokemon.url);
+
+      return {
+        id: data.id,
+        name: data.species.name,
+        types: data.types.map((type: PokemonTypes) => type.type.name),
+        sprite: getPokemonImage(data.id),
+      };
+    }),
+  );
+
+  return pokeList;
 };

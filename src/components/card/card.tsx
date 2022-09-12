@@ -23,7 +23,7 @@ const Card: React.FC<CardProps> = ({pokemon}) => {
   };
 
   return (
-    <View style={styles.cardWrapper} key={pokemon.name}>
+    <View style={styles.cardWrapper}>
       {isLoading ? (
         <View style={styles.skeleton}>
           <CardSkeleton />
