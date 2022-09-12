@@ -66,7 +66,7 @@ const SignUnScreen: React.FC<
 
   return (
     <Layout>
-      <TopNavigator navigation={navigation} />
+      <TopNavigator />
       <View style={styles.container}>
         <KeyboardAwareScrollView>
           <View style={styles.title}>

@@ -3,17 +3,25 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: styleConfig.spacing.l,
-    // flex: 1,
+    flex: 1,
   },
-  loader: {
-    paddingTop: styleConfig.spacing.s,
-    paddingBottom: styleConfig.spacing.m,
-    alignItems: 'center',
+  searchContainer: {
+    marginBottom: styleConfig.spacing.m,
+    paddingHorizontal: styleConfig.spacing.l,
   },
   empty: {
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  resultContainer: {
     flex: 1,
+  },
+  resultList: {
+    paddingHorizontal: styleConfig.spacing.l,
+  },
+  emptyResults: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

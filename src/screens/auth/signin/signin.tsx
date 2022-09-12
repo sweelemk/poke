@@ -47,7 +47,7 @@ const SignInScreen: React.FC<
   };
   return (
     <Layout>
-      <TopNavigator navigation={navigation} />
+      <TopNavigator />
       <View style={styles.container}>
         <View style={styles.title}>
           <Text category="h4">Welcome</Text>
