@@ -15,3 +15,7 @@ export interface PokemonListType {
   sprite: string;
   _id?: string;
 }
+
+export type FavouritesPokemon = {
+  favourite_id: number;
+};

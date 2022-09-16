@@ -9,14 +9,14 @@ import {
   BottomNavigationTab,
   Icon,
 } from '@ui-kitten/components';
-import type {TabRoutes} from './types';
+import type {AppRoutes, TabRoutes} from './types';
 import {HomeScreen} from './home';
 import {ProfileScreen} from './profile';
 import {SearchScreen} from './search';
 import {StyleSheet} from 'react-native';
 
 const Tab = createBottomTabNavigator<TabRoutes>();
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<AppRoutes>();
 
 const HomeIcon = (props: any) => (
   <Icon {...props} name="pokeball" pack="material-community" />
@@ -53,11 +53,11 @@ const TabNavigation = () => (
 
 const AppNavigator = () => (
   <Stack.Navigator
-    initialRouteName="Home"
+    initialRouteName="Main"
     screenOptions={{
       headerShown: false,
     }}>
-    <Stack.Screen name="Home" component={TabNavigation} />
+    <Stack.Screen name="Main" component={TabNavigation} />
     <Stack.Screen name="Search" component={SearchScreen} />
   </Stack.Navigator>
 );

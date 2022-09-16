@@ -10,6 +10,7 @@ import {styles} from './search.styles';
 import {Formik} from 'formik';
 import {Input, Text} from '@ui-kitten/components';
 import {FlatList} from 'react-native-gesture-handler';
+import usePokemons from '../../../hooks/usePokemons';
 
 type searchState = {
   search: string;
@@ -30,6 +31,8 @@ const searchInitialValues: searchState = {
 };
 
 const SearhScreen: React.FC = () => {
+  const {setFavouritePokemon, removeFavouritePokemon, isFavourite} =
+    usePokemons();
   const [allPokemons, setAllPokemons] = useState<NameURLInterface[]>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
   const [searchResult, setSearchResult] =
@@ -112,7 +115,17 @@ const SearhScreen: React.FC = () => {
             <FlatList
               data={searchResult.searchData}
               renderItem={poke => {
-                return <Card key={poke.item.name} pokemon={poke.item} />;
+                const favourite = isFavourite(poke.item.id);
+                return (
+                  <Card
+                    key={poke.item.name}
+                    pokemon={poke.item}
+                    handleFavourite={
+                      favourite ? removeFavouritePokemon : setFavouritePokemon
+                    }
+                    favourite={favourite}
+                  />
+                );
               }}
               keyExtractor={item => String(item.name)}
               contentContainerStyle={styles.resultList}
