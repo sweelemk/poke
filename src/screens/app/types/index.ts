@@ -15,5 +15,6 @@ export type TabRoutes = {
 };
 
 export type AppRoutes = {
+  Main: undefined;
   Search: undefined;
 };

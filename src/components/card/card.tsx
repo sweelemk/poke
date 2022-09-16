@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Image} from 'react-native';
+import {View, Image, TouchableWithoutFeedback} from 'react-native';
 import {Icon, Text} from '@ui-kitten/components';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -10,9 +10,11 @@ import CardSkeleton from './card-skeleton';
 
 type CardProps = {
   pokemon: PokemonListType;
+  handleFavourite: (id: number) => void;
+  favourite?: boolean;
 };
 
-const Card: React.FC<CardProps> = ({pokemon}) => {
+const Card: React.FC<CardProps> = ({pokemon, handleFavourite, favourite}) => {
   const hexColor = getPokeColor(pokemon.types[0] as string);
   const rgbaColor = convertHexToRGBA(hexColor, 0.4);
 
@@ -31,11 +33,13 @@ const Card: React.FC<CardProps> = ({pokemon}) => {
       ) : null}
       <View style={styles.container}>
         <View style={styles.favourite}>
-          <Icon
-            fill="#1d2447"
-            name="star-outline"
-            style={styles.favouriteIcon}
-          />
+          <TouchableWithoutFeedback onPress={() => handleFavourite(pokemon.id)}>
+            <Icon
+              fill={favourite ? '#FF9C32' : '#1d2447'}
+              name={favourite ? 'star' : 'star-outline'}
+              style={styles.favouriteIcon}
+            />
+          </TouchableWithoutFeedback>
         </View>
         <LinearGradient
           style={styles.gradientBox}

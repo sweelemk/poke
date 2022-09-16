@@ -1,12 +1,14 @@
 import React from 'react';
-import {AuthContextProvider} from './src/context';
+import {AppContextProvider, AuthContextProvider} from './src/context';
 import {RootContainer} from './src/modules/root-container';
 
 const App: React.FC = () => {
   return (
-    <AuthContextProvider>
-      <RootContainer />
-    </AuthContextProvider>
+    <AppContextProvider>
+      <AuthContextProvider>
+        <RootContainer />
+      </AuthContextProvider>
+    </AppContextProvider>
   );
 };
 

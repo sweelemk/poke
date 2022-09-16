@@ -16,12 +16,12 @@ type AuthContextValues = {
   login?: any;
   signup?: any;
   signout?: any;
-  user: User | null;
+  user: User | undefined;
   setUser?: any;
 };
 
 const AuthContext = createContext<AuthContextValues>({
-  user: null,
+  user: undefined,
 });
 
 export const AuthContextProvider = ({
@@ -29,13 +29,13 @@ export const AuthContextProvider = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<User | undefined>(undefined);
 
   const signout = useCallback(async () => {
     try {
       const {error} = await signOut();
       if (!error) {
-        setUser(null);
+        setUser(undefined);
       }
     } catch (error) {
       console.warn(error);
