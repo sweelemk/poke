@@ -5,7 +5,7 @@ import {Button, Input, Text} from '@ui-kitten/components';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
 import type {AuthenticationRoutes, StackNavigationProps} from '../types';
-import {Layout, TopNavigator} from '../../../components';
+import {Layout, toastNotification, TopNavigator} from '../../../components';
 import {styleConfig} from '../../../utils';
 import {signUp} from '../../../modules/api/auth-service';
 import {useAuth} from '../../../context';
@@ -41,7 +41,7 @@ const formInitialValues: formState = {
 
 const SignUnScreen: React.FC<
   StackNavigationProps<AuthenticationRoutes, 'SignUp'>
-> = ({navigation}) => {
+> = () => {
   const [isLoaing, setLoading] = useState(false);
   const {setUser} = useAuth();
 
@@ -56,9 +56,19 @@ const SignUnScreen: React.FC<
     try {
       setLoading(true);
       const data = await signUp(user);
-      setUser({id: data.user?.id, ...data.user?.user_metadata});
-    } catch (error) {
-      console.warn(error);
+      if (data.user) {
+        setUser({id: data.user?.id, ...data.user?.user_metadata});
+      }
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+    } catch (error: any) {
+      toastNotification({
+        type: 'error',
+        text1: error.name,
+        text2: error.message,
+      });
     } finally {
       setLoading(false);
     }
