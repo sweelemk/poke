@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {StyleSheet, TouchableOpacity, View} from 'react-native';
-import {Button, Input, Text} from '@ui-kitten/components';
+import {Button, Input, Text, useTheme} from '@ui-kitten/components';
 import {Formik} from 'formik';
 import * as Yup from 'yup';
-import {Layout, TopNavigator} from '../../../components';
+import Toast from 'react-native-toast-message';
+import {Layout, toastNotification, TopNavigator} from '../../../components';
 import {styleConfig} from '../../../utils';
 import type {AuthenticationRoutes, StackNavigationProps} from '../types';
 import {useAuth} from '../../../context';
@@ -45,9 +46,12 @@ const SignInScreen: React.FC<
       if (data.error) {
         throw new Error(data.error.message);
       }
-    } catch (error) {
-      // console.warn(error);
-      console.log('error', error);
+    } catch (error: any) {
+      toastNotification({
+        type: 'error',
+        text1: error.name,
+        text2: error.message,
+      });
     } finally {
       setLoading(false);
     }
