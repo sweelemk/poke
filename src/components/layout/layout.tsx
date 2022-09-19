@@ -5,13 +5,20 @@ import {StyleSheet} from 'react-native';
 
 interface PageProps {
   children: React.ReactNode;
+  full?: boolean;
+  level?: string;
   [x: string]: any;
 }
 
-const Layout: React.FC<PageProps> = ({children, rest}) => {
+const Layout: React.FC<PageProps> = ({children, full, level, rest}) => {
   const insets = useSafeAreaInsets();
+
+  const padding = full ? 0 : insets.top;
   return (
-    <UILayout style={[{paddingTop: insets.top}, styles.container]} {...rest}>
+    <UILayout
+      style={[{paddingTop: padding}, styles.container]}
+      level={level}
+      {...rest}>
       {children}
     </UILayout>
   );

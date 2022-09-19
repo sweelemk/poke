@@ -11,7 +11,7 @@ const WelcomeScreen: React.FC<
 > = ({navigation}) => {
   return (
     <Layout>
-      <Image style={styles.poster} source={posterPath} />
+      {/* <Image style={styles.poster} source={posterPath} /> */}
       <View style={styles.container}>
         <View style={styles.box}>
           <Button onPress={() => navigation.navigate('SignIn')}>Sign in</Button>

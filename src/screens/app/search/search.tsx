@@ -10,7 +10,7 @@ import {styles} from './search.styles';
 import {Formik} from 'formik';
 import {Input, Text} from '@ui-kitten/components';
 import {FlatList} from 'react-native-gesture-handler';
-import usePokemons from '../../../hooks/usePokemons';
+import {usePokemons} from '../../../hooks';
 
 type searchState = {
   search: string;
@@ -52,7 +52,6 @@ const SearhScreen: React.FC = () => {
   }, []);
 
   const handleSearch = async (e: searchState) => {
-    console.log(e);
     if (!e.search) {
       setSearchResult(searchDefaultState);
       return;

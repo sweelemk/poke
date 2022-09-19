@@ -16,9 +16,7 @@ export const styles = StyleSheet.create({
   container: {
     position: 'relative',
     paddingBottom: 16,
-    backgroundColor: '#ffffff',
-    borderTopRightRadius: 24,
-    borderTopLeftRadius: 24,
+    borderRadius: 24,
   },
   favourite: {
     backgroundColor: '#ffffff',
@@ -70,7 +68,6 @@ export const styles = StyleSheet.create({
   type: {
     height: 48,
     flex: 1,
-    backgroundColor: '#ffffff',
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
     flexDirection: 'row',

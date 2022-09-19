@@ -5,7 +5,7 @@ import {
   removeFavouritePokemons,
 } from '../modules/api/poke-service';
 
-const usePokemons = () => {
+export const usePokemons = () => {
   const {user} = useAuth();
   const {addFavourite, favourites, removePokemon} = useAppContext();
 
@@ -42,5 +42,3 @@ const usePokemons = () => {
     isFavourite,
   };
 };
-
-export default usePokemons;

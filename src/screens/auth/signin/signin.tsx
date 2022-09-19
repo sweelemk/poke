@@ -38,9 +38,16 @@ const SignInScreen: React.FC<
     try {
       setLoading(true);
       const data = await signIn(user);
-      setUser({id: data.user?.id, ...data.user?.user_metadata});
+      console.log('data', data);
+      if (data.user) {
+        setUser({id: data.user?.id, ...data.user?.user_metadata});
+      }
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
     } catch (error) {
-      console.warn(error);
+      // console.warn(error);
+      console.log('error', error);
     } finally {
       setLoading(false);
     }

@@ -1,3 +1,5 @@
+import type {PokemonSpeciesType} from '../screens/app/detail/components/biography/types';
+
 export const getInitials = (name: string) => {
   const nameArr: string[] = name.split(' ');
   const letters = nameArr.map((word: string) => word.charAt(0));
@@ -44,4 +46,23 @@ export const convertHexToRGBA = (hexCode: string, opacity = 1) => {
   }
 
   return `rgba(${r},${g},${b},${opacity})`;
+};
+
+export const getBiographyText = (
+  _spices: PokemonSpeciesType,
+  _types: string[],
+) => {
+  const lang = _spices.flavor_text_entries.filter(
+    entry => entry.language.name === 'en',
+  )[0];
+
+  const joinTypes = _types.join(' and ');
+
+  const legend = _spices.is_legendary ? ' legendary, ' : '';
+  const mythic = _spices.is_mythical ? ' mythical, ' : '';
+
+  return `${legend}${mythic}${joinTypes} type pokemon. ${lang?.flavor_text.replace(
+    /\r?\n|\f|\r/g,
+    ' ',
+  )}`;
 };

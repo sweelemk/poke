@@ -1,6 +1,5 @@
 import type {ParamListBase, RouteProp} from '@react-navigation/native';
 import type {StackNavigationProp} from '@react-navigation/stack';
-
 export interface StackNavigationAppProps<
   ParamList extends ParamListBase,
   RouteName extends keyof ParamList = string,
@@ -17,4 +16,5 @@ export type TabRoutes = {
 export type AppRoutes = {
   Main: undefined;
   Search: undefined;
+  Detail: {id: number};
 };
