@@ -1,4 +1,5 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {
   createBottomTabNavigator,
   BottomTabBarProps,
@@ -13,7 +14,7 @@ import type {AppRoutes, TabRoutes} from './types';
 import {HomeScreen} from './home';
 import {ProfileScreen} from './profile';
 import {SearchScreen} from './search';
-import {StyleSheet} from 'react-native';
+import {DetailScreen} from './detail';
 
 const Tab = createBottomTabNavigator<TabRoutes>();
 const Stack = createStackNavigator<AppRoutes>();
@@ -59,6 +60,7 @@ const AppNavigator = () => (
     }}>
     <Stack.Screen name="Main" component={TabNavigation} />
     <Stack.Screen name="Search" component={SearchScreen} />
+    <Stack.Screen name="Detail" component={DetailScreen} />
   </Stack.Navigator>
 );
 

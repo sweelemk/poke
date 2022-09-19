@@ -4,11 +4,11 @@ import {RootContainer} from './src/modules/root-container';
 
 const App: React.FC = () => {
   return (
-    <AppContextProvider>
-      <AuthContextProvider>
+    <AuthContextProvider>
+      <AppContextProvider>
         <RootContainer />
-      </AuthContextProvider>
-    </AppContextProvider>
+      </AppContextProvider>
+    </AuthContextProvider>
   );
 };
 

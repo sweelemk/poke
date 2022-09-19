@@ -4,7 +4,7 @@ import {Text} from '@ui-kitten/components';
 import {styles} from '../home.styles';
 import {Card} from '../../../../components';
 import type {PokemonListType} from '../../../../interfaces';
-import usePokemons from '../../../../hooks/usePokemons';
+import {usePokemons} from '../../../../hooks';
 
 type PokemonsType = {
   pokemons: PokemonListType[];

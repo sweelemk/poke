@@ -39,7 +39,6 @@ export const AppContextProvider = ({children}: {children: React.ReactNode}) => {
       payload: {id},
     });
   };
-  console.log('state', state);
 
   const values = useMemo(
     () => ({

@@ -13,8 +13,8 @@ export const styles = StyleSheet.create({
     marginBottom: styleConfig.spacing.s,
   },
   poster: {
-    width: '100%',
-    height: '85%',
-    position: 'absolute',
+    width: '70%',
+    height: '50%',
+    // position: 'absolute',
   },
 });

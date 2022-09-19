@@ -8,14 +8,20 @@ import AppNavigator from '../../screens/app';
 import AuthanticationNavigator from '../../screens/auth';
 import {useAuth} from '../../context';
 import mapping from '../../../mapping.json';
-import {MaterialCommunityIconsPack} from '../icons/material-community-icons';
+import {MaterialCommunityIconsPack, OcticonsIconIconsPack} from '../icons';
 
 const RootContainer: React.FC = () => {
   const {user} = useAuth();
-  const [theme] = useState('light');
+  const [theme] = useState('dark');
   return (
     <>
-      <IconRegistry icons={[EvaIconsPack, MaterialCommunityIconsPack]} />
+      <IconRegistry
+        icons={[
+          EvaIconsPack,
+          MaterialCommunityIconsPack,
+          OcticonsIconIconsPack,
+        ]}
+      />
       <StatusBar
         barStyle={theme === 'light' ? 'dark-content' : 'light-content'}
       />
