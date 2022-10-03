@@ -1,6 +1,10 @@
 import type {PostgrestResponse} from '@supabase/supabase-js';
-import {getPokemonImage} from '../../../helpers';
-import type {NameURLInterface, PokemonTypes} from '../../../interfaces';
+import {getAbilityId, getAbilityText, getPokemonImage} from '../../../helpers';
+import type {
+  DamageRelations,
+  NameURLInterface,
+  PokemonTypes,
+} from '../../../interfaces';
 import {http} from '../http';
 import {supabase} from '../supabase';
 
@@ -72,18 +76,50 @@ export const getPokemonSpeciesData = async (pokeId: number) => {
   return await http.get(`pokemon-species/${pokeId}`);
 };
 
+const getPokemonDamage = async (damage: string[]) => {
+  return Promise.all(
+    damage.map(async damageItem => {
+      const {data} = await http.get(`type/${damageItem}`);
+      return {
+        double_damage_from: data.damage_relations.double_damage_from,
+        double_damage_to: data.damage_relations.double_damage_to,
+      };
+    }),
+  ).then(response => {
+    return response.reduce(
+      (acc: DamageRelations, curr) => {
+        const getNames = (names: {name: string}[]) =>
+          names.map((from: {name: string}) => from.name);
+
+        const p = {
+          ...acc,
+          ...{
+            weakness: [...acc.weakness, ...getNames(curr.double_damage_from)],
+            strength: [...acc.strength, ...getNames(curr.double_damage_to)],
+          },
+        };
+        return p;
+      },
+      {weakness: [], strength: []},
+    );
+  });
+};
+
 export const getPokemonById = async (pokeId: number) => {
   const pokemon = await http.get(`pokemon/${pokeId}`);
+  const types = pokemon.data.types.map((type: PokemonTypes) => type.type.name);
+  const damageRelations = await getPokemonDamage(types);
 
   return {
     id: pokemon.data.id,
     name: pokemon.data.species.name,
-    types: pokemon.data.types.map((type: PokemonTypes) => type.type.name),
+    types: types,
     sprite: getPokemonImage(pokemon.data.id),
     abilities: pokemon.data.abilities,
     base_experience: pokemon.data.base_experience,
     height: pokemon.data.height,
     weight: pokemon.data.weight,
     stats: pokemon.data.stats,
+    damage_relations: damageRelations,
   };
 };

@@ -15,19 +15,19 @@ export const styles = StyleSheet.create({
     paddingTop: 60,
   },
   image: {
-    width: 260,
-    height: 260,
+    width: 200,
+    height: 200,
+    marginBottom: 16,
+  },
+  name: {
+    // color: '#ffffff',
   },
   content: {
-    paddingHorizontal: styleConfig.spacing.l,
-    paddingTop: styleConfig.spacing.xl,
     zIndex: 1,
-  },
-  head: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: styleConfig.spacing.l,
+    // borderTopRightRadius: styleConfig.spacing.l,
+    // borderTopLeftRadius: styleConfig.spacing.l,
+    // top: -styleConfig.spacing.l,
+    marginBottom: styleConfig.spacing.xl,
   },
   types: {
     flexDirection: 'row',

@@ -12,7 +12,6 @@ type StatsProps = {
 const Stats: React.FC<StatsProps> = ({stats}) => {
   return (
     <View style={styles.wrapper}>
-      <Text category="h6">Stats</Text>
       {stats.map((st, idx) => (
         <>
           <View style={styles.row}>

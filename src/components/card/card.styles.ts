@@ -2,8 +2,8 @@ import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   cardWrapper: {
-    marginBottom: 24,
     position: 'relative',
+    marginBottom: 16,
   },
   skeleton: {
     position: 'absolute',
@@ -15,7 +15,6 @@ export const styles = StyleSheet.create({
   },
   container: {
     position: 'relative',
-    paddingBottom: 16,
     borderRadius: 24,
   },
   favourite: {
@@ -44,44 +43,38 @@ export const styles = StyleSheet.create({
     height: 18,
   },
   gradientBox: {
-    height: 200,
+    height: 150,
     borderRadius: 24,
     paddingBottom: 24,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   image: {
-    width: 120,
-    height: 120,
+    width: 100,
+    height: 100,
+    position: 'absolute',
+    top: 30,
+    right: 50,
   },
   types: {
-    height: 48,
-    marginTop: -32,
-    alignItems: 'center',
-    marginBottom: 10,
-  },
-  typesContainer: {
-    position: 'relative',
-    width: '50%',
-    flexDirection: 'row',
-  },
-  type: {
-    height: 48,
     flex: 1,
     borderTopRightRadius: 24,
     borderTopLeftRadius: 24,
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 8,
+    position: 'absolute',
+    left: 20,
+    bottom: 20,
   },
   typeImage: {
-    width: 32,
-    height: 32,
-    marginHorizontal: 3,
+    width: 24,
+    height: 24,
+    marginRight: 8,
   },
-  name: {
-    alignItems: 'center',
+  nameWrapper: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
   },
+  name: {},
   shadow: {
     marginTop: 0,
     height: 5,

@@ -3,7 +3,7 @@ import {View, Image} from 'react-native';
 import {Button} from '@ui-kitten/components';
 import {Layout} from '../../../components';
 import type {StackNavigationProps, AuthenticationRoutes} from '../types';
-const posterPath = require('../../../../assets/images/poke.png');
+const posterPath = require('../../../../assets/images/wolcome-poke.png');
 import {styles} from './welcome.styles';
 
 const WelcomeScreen: React.FC<
@@ -11,7 +11,7 @@ const WelcomeScreen: React.FC<
 > = ({navigation}) => {
   return (
     <Layout>
-      {/* <Image style={styles.poster} source={posterPath} /> */}
+      <Image style={styles.poster} source={posterPath} />
       <View style={styles.container}>
         <View style={styles.box}>
           <Button onPress={() => navigation.navigate('SignIn')}>Sign in</Button>

@@ -11,7 +11,7 @@ export const useHeaderAnimation = (
   const animatedOpacity = useAnimatedStyle(() => {
     const opacity = interpolate(
       scrollOffset.value,
-      [areaHeight - 90, areaHeight],
+      [areaHeight - 150, areaHeight - 120],
       [0, 1],
       {extrapolateRight: Extrapolation.CLAMP},
     );
@@ -24,7 +24,7 @@ export const useHeaderAnimation = (
   const animatedBGOpacity = useAnimatedStyle(() => {
     const opacity = interpolate(
       scrollOffset.value,
-      [areaHeight - 200, areaHeight - 100],
+      [areaHeight - 200, areaHeight - 120],
       [0, 1],
       {extrapolateRight: Extrapolation.CLAMP},
     );
@@ -37,7 +37,7 @@ export const useHeaderAnimation = (
   const animationTranslateY = useAnimatedStyle(() => {
     const translate = interpolate(
       scrollOffset.value,
-      [areaHeight - 90, areaHeight],
+      [areaHeight - 150, areaHeight - 120],
       [-10, 0],
       {extrapolateRight: Extrapolation.CLAMP},
     );

@@ -4,7 +4,6 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: styleConfig.spacing.l,
-    // flex: 1,
   },
   loader: {
     paddingTop: styleConfig.spacing.s,

@@ -71,7 +71,6 @@ const HomeScreen: React.FC<HomeProps> = ({navigation}) => {
 
   useEffect(() => {
     fetchPokemons();
-    // fetchFavourites();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
@@ -94,7 +93,7 @@ const HomeScreen: React.FC<HomeProps> = ({navigation}) => {
           />
         )}
       />
-      {pokemons ? (
+      {pokemons.data.length > 0 ? (
         <Pokemons
           pokemons={pokemons.data}
           fetchMorePokemons={fetchMorePokemons}
