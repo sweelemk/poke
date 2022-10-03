@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({title, id, scrollOffset}) => {
   const {isFavourite, removeFavouritePokemon, setFavouritePokemon} =
     usePokemons();
   const {animatedOpacity, animatedBGOpacity, animationTranslateY} =
-    useHeaderAnimation(scrollOffset, IMAGE_HEIGHT);
+    useHeaderAnimation(scrollOffset, IMAGE_HEIGHT - 30);
   const favourite = isFavourite(id);
 
   const handleFavourite = () => {

@@ -13,14 +13,13 @@ import type {AppRoutes, StackNavigationAppProps} from '../types';
 import {Layout} from '../../../components';
 import {styles} from './detail.styles';
 import {usePokemonGradient} from '../../../hooks';
-import {Biography, Characters, Header, Skeleton, Stats} from './components';
-import {getPokeType} from '../../../helpers';
+import {Header, Skeleton, Tabs} from './components';
+import {getStringIDfromID} from '../../../helpers';
 import {
   getPokemonById,
   getPokemonSpeciesData,
 } from '../../../modules/api/poke-service';
-import type {PokemonSpeciesType} from './components/biography/types';
-import type {PokemonDetail} from '../../../interfaces';
+import type {PokemonDetail, PokemonSpeciesType} from '../../../interfaces';
 
 const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
   route,
@@ -28,7 +27,7 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
   const {id} = route.params;
   const theme = useTheme();
   const {height} = useWindowDimensions();
-  const IMAGE_HEIGHT = height / 1.7;
+  const IMAGE_HEIGHT = height / 1.85;
   const {getGradient} = usePokemonGradient();
   const [spices, setSpices] = useState<PokemonSpeciesType>();
   const [pokemon, setPokemon] = useState<PokemonDetail>();
@@ -86,6 +85,12 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
                   style={styles.gradientBox}
                   colors={getGradient(pokemon.types[0] as string)}>
                   <Image style={styles.image} source={{uri: pokemon.sprite}} />
+                  <Text category="p1" style={styles.name}>
+                    #{getStringIDfromID(pokemon.id)}
+                  </Text>
+                  <Text category="h3" style={styles.name}>
+                    {pokemon.name}
+                  </Text>
                 </LinearGradient>
               </Animated.View>
             </View>
@@ -97,31 +102,8 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
                 },
                 styles.content,
               ]}>
-              <View style={styles.head}>
-                <View>
-                  <Text category="h3">{pokemon.name}</Text>
-                </View>
-                <View style={styles.types}>
-                  {pokemon.types.map((item: string) => {
-                    const img = getPokeType(item);
-                    return (
-                      <Image source={img as any} style={styles.typeImage} />
-                    );
-                  })}
-                </View>
-              </View>
-              <View style={styles.row}>
-                <Biography
-                  spices={spices as PokemonSpeciesType}
-                  pokeTypes={pokemon.types}
-                />
-              </View>
               <View>
-                <Characters spices={spices} pokemon={pokemon} />
-              </View>
-
-              <View>
-                <Stats stats={pokemon.stats} />
+                <Tabs pokemon={pokemon} spices={spices} />
               </View>
             </View>
           </Animated.ScrollView>

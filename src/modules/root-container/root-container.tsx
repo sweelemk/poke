@@ -9,7 +9,11 @@ import AppNavigator from '../../screens/app';
 import AuthanticationNavigator from '../../screens/auth';
 import {useAuth} from '../../context';
 import mapping from '../../../mapping.json';
-import {MaterialCommunityIconsPack, OcticonsIconIconsPack} from '../icons';
+import {
+  FontistoIconsPack,
+  MaterialCommunityIconsPack,
+  OcticonsIconIconsPack,
+} from '../icons';
 import {getToastConfig} from '../../components';
 
 const RootContainer: React.FC = () => {
@@ -23,6 +27,7 @@ const RootContainer: React.FC = () => {
           EvaIconsPack,
           MaterialCommunityIconsPack,
           OcticonsIconIconsPack,
+          FontistoIconsPack,
         ]}
       />
       <StatusBar

@@ -57,6 +57,7 @@
 		<string>Poppins-SemiBold.ttf</string>
 		<string>MaterialCommunityIcons.ttf</string>
 		<string>Octicons.ttf</string>
+		<string>Fontisto.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen.storyboard</string>

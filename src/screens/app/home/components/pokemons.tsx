@@ -38,7 +38,7 @@ const Pokemons: React.FC<PokemonsType> = ({pokemons, fetchMorePokemons}) => {
           />
         );
       }}
-      keyExtractor={item => String(item.id)}
+      keyExtractor={item => String(item.name)}
       contentContainerStyle={styles.container}
       onEndReachedThreshold={1}
       onEndReached={fetchMorePokemons}

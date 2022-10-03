@@ -7,8 +7,4 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLIC_KEY, {
   detectSessionInUrl: false,
 });
 
-supabase.auth.onAuthStateChange((event, session) => {
-  console.log(event, session);
-});
-
 export {supabase};

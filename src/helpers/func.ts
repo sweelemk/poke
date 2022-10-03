@@ -1,4 +1,8 @@
-import type {PokemonSpeciesType} from '../screens/app/detail/components/biography/types';
+import type {
+  Abilities,
+  AbilitiesEffectEntries,
+  PokemonSpeciesType,
+} from '../interfaces';
 
 export const getInitials = (name: string) => {
   const nameArr: string[] = name.split(' ');
@@ -65,4 +69,35 @@ export const getBiographyText = (
     /\r?\n|\f|\r/g,
     ' ',
   )}`;
+};
+
+export const getAbilityId = (abilities: Abilities) => {
+  const parseUrl = abilities.ability.url.split('/').filter((i: string) => i);
+
+  return parseUrl[parseUrl.length - 1];
+};
+
+export const getAbilityText = (text: AbilitiesEffectEntries[]) => {
+  const enText = text.filter((t: any) => t.language.name === 'en')[0];
+
+  return enText?.short_effect;
+};
+
+export const getGender = (rate: number) => {
+  const rates: {[key: number]: {male: number; female: number}} = {
+    1: {male: 100, female: 0},
+    2: {male: 87.5, female: 12.5},
+    3: {male: 75, female: 25},
+    4: {male: 62.5, female: 37.5},
+    5: {male: 37.5, female: 62.5},
+    6: {male: 25, female: 75},
+    7: {male: 12.5, female: 87.5},
+    8: {male: 0, female: 100},
+  };
+
+  return rates[rate];
+};
+
+export const calculateCatchRate = (gender: number) => {
+  return `${((gender / (3 * 255)) * 100).toFixed(1)} % PokéBall & Full HP`;
 };
