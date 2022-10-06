@@ -22,6 +22,8 @@ export const styles = StyleSheet.create({
   },
   types: {
     flexDirection: 'row',
+    flex: 1,
+    flexWrap: 'wrap',
   },
   typeImage: {
     width: 24,

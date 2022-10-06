@@ -1,20 +1,32 @@
 import {StyleSheet} from 'react-native';
-import {styleConfig} from './../../../../../utils/style-config';
+import {styleConfig} from '../../../../../utils';
 
 export const styles = StyleSheet.create({
   wrapper: {
-    marginBottom: styleConfig.spacing.xl,
+    // marginBottom: styleConfig.spacing.xl,
   },
   row: {
-    paddingVertical: styleConfig.spacing.m,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    marginBottom: 18,
+    alignItems: 'center',
   },
   rowTitle: {
     fontWeight: '400',
-    width: '50%',
+    width: '40%',
+    paddingRight: 24,
   },
+  title: {},
   rowValue: {
-    width: '50%',
+    flex: 1,
+  },
+  totalRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  bold: {
+    fontWeight: '400',
+  },
+  section: {
+    marginBottom: styleConfig.spacing.l,
   },
 });

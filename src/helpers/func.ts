@@ -1,3 +1,4 @@
+import { Stats } from './../interfaces/index';
 import type {
   Abilities,
   AbilitiesEffectEntries,
@@ -100,4 +101,22 @@ export const getGender = (rate: number) => {
 
 export const calculateCatchRate = (gender: number) => {
   return `${((gender / (3 * 255)) * 100).toFixed(1)} % PokéBall & Full HP`;
+};
+
+export const uniq = (array: string[]) => {
+  return array.filter((c, index) => {
+    return array.indexOf(c) === index;
+  });
+};
+
+export const calculateMaxStats = (id: number, stat: Stats) => {
+  if (id === 192) {
+    return 1;
+  } else if (stat.stat.name === 'hp') {
+    return Math.floor(((2 * stat.base_stat + 31 + 63) * 100) / 100 + 100 + 10);
+  } else {
+    return Math.floor(
+      Math.floor(((2 * stat.base_stat + 31 + 63) * 100) / 100 + 5) * 1.1,
+    );
+  }
 };

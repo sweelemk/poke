@@ -7,6 +7,7 @@ import {
   getBiographyText,
   getGender,
   getPokeType,
+  uniq,
 } from '../../../../../helpers';
 import {styles} from './biography.styles';
 import type {
@@ -111,7 +112,7 @@ const Biography: React.FC<BiographyProps> = ({spices, pokemon}) => {
           value={
             <View style={styles.types}>
               {pokemon.damage_relations.strength.length ? (
-                getType(pokemon.damage_relations.strength)
+                getType(uniq(pokemon.damage_relations.strength))
               ) : (
                 <Text>-</Text>
               )}
@@ -123,7 +124,7 @@ const Biography: React.FC<BiographyProps> = ({spices, pokemon}) => {
           value={
             <View style={styles.types}>
               {pokemon.damage_relations.weakness.length ? (
-                getType(pokemon.damage_relations.weakness)
+                getType(uniq(pokemon.damage_relations.weakness))
               ) : (
                 <Text>-</Text>
               )}
