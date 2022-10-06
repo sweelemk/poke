@@ -1,5 +1,5 @@
 import type {PostgrestResponse} from '@supabase/supabase-js';
-import {getAbilityId, getAbilityText, getPokemonImage} from '../../../helpers';
+import {getPokemonImage} from '../../../helpers';
 import type {
   DamageRelations,
   NameURLInterface,

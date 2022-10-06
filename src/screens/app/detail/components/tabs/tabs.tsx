@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import {Text, useTheme} from '@ui-kitten/components';
 import {styles} from './tabs.styles';
-import {FlatList} from 'react-native-gesture-handler';
 import type {
   PokemonDetail,
   PokemonSpeciesType,
 } from '../../../../../interfaces';
 import {Biography} from '../biography';
-import {Characters} from '../characters';
 import {Stats} from '../stats';
 import {getPokeColor} from '../../../../../helpers';
 
@@ -41,23 +39,14 @@ type TabComponent = {
 };
 
 const Tabs: React.FC<TabsProps> = ({pokemon, spices}) => {
-  const ref = React.useRef<FlatList>(null);
   const theme = useTheme();
   const [index, setIndex] = useState(0);
+  const pokeColor = getPokeColor(pokemon.types[0] as string);
 
   const TabComponent: TabComponent = {
     0: <Biography spices={spices as PokemonSpeciesType} pokemon={pokemon} />,
-    1: <Stats stats={pokemon.stats} />,
+    1: <Stats id={pokemon.id} stats={pokemon.stats} color={pokeColor} />,
   };
-
-  useEffect(() => {
-    ref.current?.scrollToIndex({
-      index,
-      animated: true,
-      viewOffset: 10,
-      viewPosition: 0.2,
-    });
-  }, [index]);
 
   return (
     <>
@@ -76,7 +65,7 @@ const Tabs: React.FC<TabsProps> = ({pokemon, spices}) => {
                     {
                       color:
                         index === fIndex
-                          ? getPokeColor(pokemon.types[0] as string)
+                          ? pokeColor
                           : theme['background-alternative-color-1'],
                     },
                   ]}>

@@ -71,9 +71,13 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
 
   return (
     <Layout full>
+      <Header
+        title={pokemon?.name}
+        id={pokemon?.id ?? 0}
+        scrollOffset={scrollY}
+      />
       {!loading && pokemon && spices ? (
         <>
-          <Header title={pokemon.name} id={pokemon.id} scrollOffset={scrollY} />
           <Animated.ScrollView
             scrollEventThrottle={1}
             onScroll={scrollHandler}

@@ -4,4 +4,5 @@ export * from './avatar';
 export * from './spinner';
 export * from './card';
 export * from './toast';
-export * from './gender/';
+export * from './gender';
+export * from './progress';
