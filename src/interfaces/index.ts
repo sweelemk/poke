@@ -19,13 +19,8 @@ export type FavouritesPokemon = {
   favourite_id: number;
 };
 
-export type Link = {
-  name: string;
-  url: string;
-};
-
 export type Abilities = {
-  ability: Link;
+  ability: NameURLInterface;
   is_hidden: boolean;
   slot: number;
 };
@@ -33,7 +28,7 @@ export type Abilities = {
 export type AbilitiesEffectEntries = {
   effect: string;
   short_effect: string;
-  language: Link;
+  language: NameURLInterface;
 };
 
 export type Stats = {
@@ -76,6 +71,11 @@ export type DamageRelations = {
   strength: string[];
 };
 
+export type Varieties = {
+  is_default: boolean;
+  pokemon: NameURLInterface;
+};
+
 export type PokemonSpeciesType = {
   base_happiness: number;
   capture_rate: number;
@@ -88,6 +88,49 @@ export type PokemonSpeciesType = {
   is_mythical: boolean;
   shape: {name: string; url: string};
   genera: Genera[];
-  egg_groups: Link[];
+  egg_groups: NameURLInterface[];
   hatch_counter: number;
+  varieties: Varieties[];
+};
+
+export type Chain = {
+  is_baby: boolean;
+  species: NameURLInterface;
+  evolution_details: {
+    item: NameURLInterface;
+    trigger: NameURLInterface;
+    gender: number;
+    held_item: NameURLInterface;
+    known_move: NameURLInterface;
+    known_move_type: NameURLInterface;
+    location: NameURLInterface;
+    min_level: number;
+    min_happiness: NameURLInterface;
+    min_beauty: NameURLInterface;
+    min_affection: NameURLInterface;
+    needs_overworldRain: boolean;
+    party_species: NameURLInterface;
+    party_type: NameURLInterface;
+    relative_physicalStats: number;
+    time_of_day: string;
+    trade_species: NameURLInterface;
+    turn_upside_down: boolean;
+  }[];
+  evolves_to: Chain[];
+};
+
+export type PokemonEvolutionChain = {
+  baby_trigger_item: null;
+  chain: Chain;
+};
+
+export type ChainPair = {
+  name: string;
+  url: string;
+  min_level: number | undefined;
+}[];
+
+export type MegaChainPair = {
+  is_default: boolean;
+  pokemon: NameURLInterface;
 };

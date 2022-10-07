@@ -27,9 +27,15 @@ const Biography: React.FC<BiographyProps> = ({spices, pokemon}) => {
   const biography = getBiographyText(spices, pokemon.types);
   const gender = getGender(spices.gender_rate);
   const getType = (types: string[]) =>
-    types.map((item: string) => {
+    types.map((item: string, _idx: number) => {
       const img = getPokeType(item);
-      return <Image key={item} source={img as any} style={styles.typeImage} />;
+      return (
+        <Image
+          key={`${item}_${_idx}`}
+          source={img as any}
+          style={styles.typeImage}
+        />
+      );
     });
   const getAbibity = () =>
     pokemon.abilities
@@ -40,8 +46,6 @@ const Biography: React.FC<BiographyProps> = ({spices, pokemon}) => {
           .join(' '),
       )
       .join(', ');
-
-  console.log('getAbibity', getAbibity());
 
   const getEggGroup = () =>
     Case.capital(spices.egg_groups.map(egg => egg.name).join(', '), ', ');
