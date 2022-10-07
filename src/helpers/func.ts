@@ -1,4 +1,8 @@
-import { Stats } from './../interfaces/index';
+import type {
+  MegaChainPair,
+  PokemonEvolutionChain,
+  Stats,
+} from './../interfaces';
 import type {
   Abilities,
   AbilitiesEffectEntries,
@@ -119,4 +123,66 @@ export const calculateMaxStats = (id: number, stat: Stats) => {
       Math.floor(((2 * stat.base_stat + 31 + 63) * 100) / 100 + 5) * 1.1,
     );
   }
+};
+
+export const getPairs = (array: any) =>
+  array.reduce(
+    (acc: any[], _curr: any, _index: number, currArray: string | any[]) => {
+      if (_index < currArray.length - 1) {
+        return [...acc, currArray.slice(_index, _index + 2)];
+      }
+      return acc;
+    },
+    [],
+  );
+
+export const parseEvolution = (response: PokemonEvolutionChain) => {
+  const evoChain = [];
+  let evoData = response.chain;
+
+  do {
+    evoChain.push({
+      name: evoData.species.name,
+      url: evoData.species.url,
+      min_level: evoData.evolves_to[0]?.evolution_details[0]?.min_level,
+    });
+    // @ts-ignore
+    [evoData] = evoData.evolves_to;
+  } while (
+    evoData &&
+    Object.prototype.hasOwnProperty.call(evoData, 'evolves_to')
+  );
+
+  const pairChain = getPairs(evoChain);
+
+  return pairChain;
+};
+
+export const getIdFromUrl = (url: string) => {
+  const tempURL = url.split('/');
+  const id = Number(tempURL[tempURL.length - 2]);
+  if (id >= 10 && id < 100) {
+    return `0${id}`;
+  }
+  if (id >= 100) {
+    return `${id}`;
+  }
+  return `00${id}`;
+};
+
+export const getMegaEvolutionImage = (item: MegaChainPair, _id: number) => {
+  const imageURL =
+    'https://raw.githubusercontent.com/HybridShivam/Pokemon/master/assets/images/';
+  const id = getStringIDfromID(_id);
+  if (!item.is_default) {
+    const [, ...rest] = item.pokemon.name.split('-');
+    const titleCase = rest
+      .map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join('-');
+    return `${imageURL}${id}-${titleCase}.png`;
+  }
+
+  return `${imageURL}${id}.png`;
 };

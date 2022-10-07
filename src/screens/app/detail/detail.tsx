@@ -14,12 +14,17 @@ import {Layout} from '../../../components';
 import {styles} from './detail.styles';
 import {usePokemonGradient} from '../../../hooks';
 import {Header, Skeleton, Tabs} from './components';
-import {getStringIDfromID} from '../../../helpers';
+import {getIdFromUrl, getStringIDfromID} from '../../../helpers';
 import {
+  getEvolutionChain,
   getPokemonById,
   getPokemonSpeciesData,
 } from '../../../modules/api/poke-service';
-import type {PokemonDetail, PokemonSpeciesType} from '../../../interfaces';
+import type {
+  ChainPair,
+  PokemonDetail,
+  PokemonSpeciesType,
+} from '../../../interfaces';
 
 const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
   route,
@@ -31,6 +36,7 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
   const {getGradient} = usePokemonGradient();
   const [spices, setSpices] = useState<PokemonSpeciesType>();
   const [pokemon, setPokemon] = useState<PokemonDetail>();
+  const [evolutionChain, setEvolutionChain] = useState<ChainPair[]>();
   const [loading, setLoading] = useState<boolean>(false);
 
   const scrollY = useSharedValue(0);
@@ -54,9 +60,12 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
     try {
       const pokeSpices = await getPokemonSpeciesData(id);
       const poke = await getPokemonById(id);
+      const evolutionId = getIdFromUrl(pokeSpices.data.evolution_chain.url);
+      const chain = await getEvolutionChain(+evolutionId);
 
       setSpices(pokeSpices.data);
       setPokemon(poke);
+      setEvolutionChain(chain);
     } catch (error) {
       console.warn(error);
     } finally {
@@ -76,7 +85,7 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
         id={pokemon?.id ?? 0}
         scrollOffset={scrollY}
       />
-      {!loading && pokemon && spices ? (
+      {!loading && pokemon && spices && evolutionChain ? (
         <>
           <Animated.ScrollView
             scrollEventThrottle={1}
@@ -107,7 +116,11 @@ const DetailScreen: React.FC<StackNavigationAppProps<AppRoutes, 'Detail'>> = ({
                 styles.content,
               ]}>
               <View>
-                <Tabs pokemon={pokemon} spices={spices} />
+                <Tabs
+                  pokemon={pokemon}
+                  spices={spices}
+                  evolutionChain={evolutionChain}
+                />
               </View>
             </View>
           </Animated.ScrollView>

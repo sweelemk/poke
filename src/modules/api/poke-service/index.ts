@@ -1,5 +1,5 @@
 import type {PostgrestResponse} from '@supabase/supabase-js';
-import {getPokemonImage} from '../../../helpers';
+import {getPokemonImage, parseEvolution} from '../../../helpers';
 import type {
   DamageRelations,
   NameURLInterface,
@@ -122,4 +122,9 @@ export const getPokemonById = async (pokeId: number) => {
     stats: pokemon.data.stats,
     damage_relations: damageRelations,
   };
+};
+
+export const getEvolutionChain = async (pokeId: number) => {
+  const evolution = await http.get(`evolution-chain/${pokeId}`);
+  return parseEvolution(evolution.data);
 };
